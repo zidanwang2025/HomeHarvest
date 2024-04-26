@@ -646,7 +646,7 @@ class RealtorScraper(Scraper):
         return homes
 
     def get_agents_schools(self, property_id: str) -> dict:
-        payload = f'{{"query":"query GetHome($property_id: ID!) {{\\n  home(property_id: $property_id) {{\\n    __typename\\n\\n    consumerAdvertisers: consumer_advertisers {{\\n      __typename\\n      type\\n      advertiserId: advertiser_id\\n      name\\n      phone\\n      type\\n      href\\n      slogan\\n      photo {{\\n        __typename\\n        href\\n      }}\\n      showRealtorLogo: show_realtor_logo\\n      hours\\n    }}\\n\\n\\n  nearbySchools: nearby_schools(radius: 5.0, limit_per_level: 3) {{ __typename schools {{ district {{ __typename id name }} }} }}}}\\n}}\\n","variables":{{"property_id":"{property_id}"}}}}'
+        payload = f'{{"query":"query GetHome($property_id: ID!) {{\\n  home(property_id: $property_id) {{\\n    __typename\\n\\n    consumerAdvertisers: consumer_advertisers {{\\n      __typename\\n      type\\n      advertiserId: advertiser_id\\n      name\\n      phone\\n      type\\n      href\\n      slogan\\n      photo {{\\n        __typename\\n        href\\n      }}\\n      showRealtorLogo: show_realtor_logo\\n      hours\\n    }}\\n\\n\\n  nearbySchools: nearby_schools(radius: 5.0, limit_per_level: 6) {{ __typename schools {{ district {{ __typename id name }} }} }}}}\\n}}\\n","variables":{{"property_id":"{property_id}"}}}}'
         response = self.session.post(self.PROPERTY_GQL, data=payload)
 
         def get_key(keys: list):
