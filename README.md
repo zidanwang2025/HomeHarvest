@@ -19,7 +19,7 @@
 ## Installation
 
 ```bash
-pip install -U homeharvest
+pip install git+https://github.com/zidanwang2025/HomeHarvest.git
 ```
   _Python version >= [3.10](https://www.python.org/downloads/release/python-3100/) required_
 
