@@ -45,7 +45,7 @@ def scrape_property(
     site = RealtorScraper(scraper_input)
     results = site.search()
 
-    properties_dfs = [process_result(result) for result in results]
+    properties_dfs = [process_result(result) for result in results if result.description is not None]
     if not properties_dfs:
         return pd.DataFrame()
 
