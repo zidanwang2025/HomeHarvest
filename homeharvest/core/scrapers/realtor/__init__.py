@@ -637,7 +637,7 @@ class RealtorScraper(Scraper):
                     variables=search_variables | {"offset": i},
                     search_type=search_type,
                 )
-                for i in range(200, min(total, 10000), 200)
+                for i in range(200, min(total, 100000), 200)
             ]
 
             for future in as_completed(futures):
