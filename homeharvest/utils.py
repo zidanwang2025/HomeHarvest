@@ -43,6 +43,17 @@ ordered_properties = [
     "alt_photos",
 ]
 
+def safe_getattr(obj, attr, default=None):
+    """Safely retrieve nested attributes separated by dots."""
+    attributes = attr.split('.')
+    current = obj
+    for a in attributes:
+        if current is not None:
+            current = getattr(current, a, None)
+        else:
+            return default
+    return current if current is not None else default
+
 
 def process_result(result: Property) -> pd.DataFrame:
     prop_data = {prop: None for prop in ordered_properties}
@@ -71,7 +82,7 @@ def process_result(result: Property) -> pd.DataFrame:
     description = result.description
     prop_data["primary_photo"] = description.primary_photo
     prop_data["alt_photos"] = ", ".join(description.alt_photos)
-    prop_data["style"] = description.style.value
+    prop_data["style"] = safe_getattr(description, 'style.value')
     prop_data["beds"] = description.beds
     prop_data["full_baths"] = description.baths_full
     prop_data["half_baths"] = description.baths_half
