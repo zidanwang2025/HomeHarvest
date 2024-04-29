@@ -71,12 +71,7 @@ def process_result(result: Property) -> pd.DataFrame:
     description = result.description
     prop_data["primary_photo"] = description.primary_photo
     prop_data["alt_photos"] = ", ".join(description.alt_photos)
-    try:
-        prop_data["style"] = description.style.value if description.style else None
-    except Exception as e:
-        print(e)
-        print(description.style)
-        exit()
+    prop_data["style"] = description.style.value
     prop_data["beds"] = description.beds
     prop_data["full_baths"] = description.baths_full
     prop_data["half_baths"] = description.baths_half
